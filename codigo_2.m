@@ -3,7 +3,7 @@ clear all;
 clc;
 disp('Ruht Horwihts')
 d=input('ingresar el polinomio entre []');
-poly2sym(d)
+poly2sym(d)%dibuja el polinomio
 N=length(d);%numero de elementos del vector
 N1=N+1;
 d(N1)=0;
