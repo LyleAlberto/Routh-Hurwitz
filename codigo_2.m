@@ -26,11 +26,16 @@ lim=round(N/2)%limite de columnas de la matriz
     end
  x1=x1
  
- for i=1:1:N
-     if x1(i,1)<0
-         disp('el sistema es inestable');
-     end
- end   
+n=0;
+if x1(3,1:1:lim)==0
+   disp('se procede a derivar');
+else
+   disp('no se procede a derivar');
+end
+
+
+   
+
 
         
 
