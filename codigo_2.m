@@ -33,6 +33,9 @@ if x1(3,1:1:lim)==0%pregunta si toda la 3fila es cero
 end
 if n==1
     disp('se procede a derivar');
+    der=polyder(d)
+    der(length(der)+1)=0;
+    x1(3,:)=der(2:2:length(der)+1)
 end
 n=0;
 %para un elemento cero
