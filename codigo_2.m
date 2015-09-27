@@ -27,11 +27,36 @@ lim=round(N/2)%limite de columnas de la matriz
  x1=x1
  
 n=0;
-if x1(3,1:1:lim)==0
-   disp('se procede a derivar');
-else
-   disp('no se procede a derivar');
+%para la fila llena de ceros
+if x1(3,1:1:lim)==0%pregunta si toda la 3fila es cero
+   n=1; 
 end
+if n==1
+    disp('se procede a derivar');
+end
+n=0;
+%para un elemento cero
+for i=1:1:N
+    if x1(i,1)==0 
+        n=1;
+    end
+end
+if n==1
+    disp('existe un elemento de cero');
+end
+n=0;
+%para estabilidad o inestabilidad
+for i=1:1:N
+    if x1(i,1)<0     
+        n=1;
+    end
+end    
+if n==1
+        disp('el sistema es inestable');
+else
+        disp('el sistema es estable');
+end
+    
 
 
    
