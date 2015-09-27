@@ -24,7 +24,7 @@ lim=round(N/2)%limite de columnas de la matriz
             end
         end        
     end
- x1=x1
+ x1=x1%imprime la matriz base
 %==============================================================================
 %============================================================================== 
 n=0;
@@ -46,19 +46,20 @@ if n==1
             end
         end        
     end
+    x1=x1
 end
-x1=x1
 %==============================================================================
 %==============================================================================
 n=0;
 %para un elemento cero
+condicion=0;
 for i=1:1:N
-    if x1(i,1)==0 
+    if x1(i,1)==0%pregunta si existe un elemento de la primer columna como cero 
         n=1;
         ia=i;
     end
 end
-if n==1
+if n==1 %n es igual a uno cuando existe un elemento igual a cero
     disp('existe un elemento de cero');
     E=d;%E igual a el polinomio
     pos=find(d~=0);% se crea un vector con todas las pocisiones diferentes de 0
@@ -66,7 +67,7 @@ if n==1
     E=min(abs(E))/10;%E toma el valor minimo absoluto dividido entre 10
     ia=ia;
     x1(ia,1)=E;%la pocision del 0 toma el valor de E
-    for i=3:1:N%fila
+    for i=ia:1:N%fila
         n=1;
         for j=1:1:lim%columna
             n=n+1;
@@ -78,6 +79,10 @@ if n==1
     x1=x1
     if ((x1(ia-1,1)>0 && x1(ia+1,1)>0)||(x1(ia-1,1)<0 && x1(ia+1,1)<0))% si la fila anterior y posterior son de igual signo
         disp('el sistema es criticamente estable');
+        condicion=1;
+    else
+        disp('el sistema es inestable');
+        condicion=1;
     end
 end
 %==============================================================================
@@ -88,12 +93,14 @@ for i=1:1:N
     if x1(i,1)<0     
         n=1;
     end
-end    
-if n==1
-        disp('el sistema es inestable');
-else
-        disp('el sistema es estable');
 end
+if n==1 && condicion==0
+        disp('el sistema es inestable');
+else if condicion==0
+        disp('el sistema es estable');
+    end
+end
+
     
 
 
