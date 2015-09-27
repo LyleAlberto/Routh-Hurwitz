@@ -33,9 +33,9 @@ if x1(3,1:1:lim)==0%pregunta si toda la 3fila es cero
 end
 if n==1
     disp('se procede a derivar');
-    der=polyder(d)
+    der=polyder(d)%la derivada
     der(length(der)+1)=0;
-    x1(3,:)=der(2:2:length(der)+1);
+    x1(3,:)=der(2:2:length(der)+1);%se llena la 3fila con la derivada
     for i=4:1:N%fila
         n=1;
         for j=1:1:lim%columna
@@ -47,16 +47,36 @@ if n==1
     end
 end
 x1=x1
+
 n=0;
 %para un elemento cero
 for i=1:1:N
     if x1(i,1)==0 
         n=1;
+        ia=i;
     end
 end
 if n==1
     disp('existe un elemento de cero');
+    E=d;%E igual a el polinomio
+    pos=find(d~=0);% se crea un vector con todas las pocisiones diferentes de 0
+    E=E(pos);%se crea un vector con los valores de las pocisiones anteriores
+    E=min(abs(E))/10;%E toma el valor minimo absoluto dividido entre 10
+    ia=ia;
+    x1(ia,1)=E;%la pocision del 0 toma el valor de E
+    for i=3:1:N%fila
+        n=1;
+        for j=1:1:lim%columna
+            n=n+1;
+            if n<=lim
+                x1(i,j)=((x1(i-1,1)*x1(i-2,n))-(x1(i-2,1)*x1(i-1,n)))/x1(i-1,1);  
+            end
+        end        
+    end
+    x1=x1
 end
+
+
 n=0;
 %para estabilidad o inestabilidad
 for i=1:1:N
