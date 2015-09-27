@@ -35,8 +35,18 @@ if n==1
     disp('se procede a derivar');
     der=polyder(d)
     der(length(der)+1)=0;
-    x1(3,:)=der(2:2:length(der)+1)
+    x1(3,:)=der(2:2:length(der)+1);
+    for i=4:1:N%fila
+        n=1;
+        for j=1:1:lim%columna
+            n=n+1;
+            if n<=lim
+                x1(i,j)=((x1(i-1,1)*x1(i-2,n))-(x1(i-2,1)*x1(i-1,n)))/x1(i-1,1);  
+            end
+        end        
+    end
 end
+x1=x1
 n=0;
 %para un elemento cero
 for i=1:1:N
